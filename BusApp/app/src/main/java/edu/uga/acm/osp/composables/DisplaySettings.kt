@@ -2,6 +2,7 @@ package edu.uga.acm.osp.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,8 @@ import androidx.compose.material.Card
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Switch
+import androidx.compose.material.SwitchColors
+import androidx.compose.material.SwitchDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
@@ -70,13 +73,15 @@ fun DisplayBox() {
 }
 @Composable
 fun toggleButton() {
-    var checked by remember { mutableStateOf(true) }
+    var dark = isSystemInDarkTheme()
+    var checked by remember { mutableStateOf(dark) }
 
     Switch(
         checked = checked,
         onCheckedChange = {
             checked = it
-        }
+        },
+        colors = SwitchDefaults.colors()
     )
 }
 // Parameterized
